@@ -14,6 +14,9 @@ cd app
 echo "\n=== Running frontend tests (npm test) ==="
 npm test
 
+# Build Next.js before starting dev server
+npm run build
+
 # Start backend server in background, redirect output to backend.log
 cd api
 echo "\n=== Starting backend server (FastAPI, port 8000) ==="
