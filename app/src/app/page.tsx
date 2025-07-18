@@ -12,7 +12,7 @@ export default function Home() {
   // Helper to get the correct API URL depending on environment
   const getApiUrl = () => {
     if (typeof window !== "undefined" && window.location.hostname === "localhost") {
-      return "http://localhost:8000/hello";
+      return "http://localhost:8000/api/hello";
     }
     return "/api/hello";
   };
