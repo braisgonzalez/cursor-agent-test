@@ -59,7 +59,7 @@ export default function Home() {
         return (
           <div className={styles.tabContent}>
             <div className={styles.heroSection}>
-              <h1 className={styles.heroTitle}>Welcome to Analytics Platform</h1>
+              <h1 className={styles.heroTitle}>Welcome to Brais Analytics</h1>
               <p className={styles.heroSubtitle}>
                 A modern, fullstack demo inspired by <a href="https://www.canva.com/website-builder/" target="_blank" rel="noopener noreferrer">professional SaaS design</a>.<br />
                 Explore data, insights, and more with a beautiful, interactive UI.
@@ -73,7 +73,7 @@ export default function Home() {
                   Click the button to call the <b>hello</b> endpoint!
                 </div>
                 <button className={styles.button} onClick={fetchApiMessage} disabled={loading}>
-                  {loading ? "Loading..." : "Call API Endpoint"}
+                  {loading ? "Loading..." : "Call hello.py API"}
                 </button>
                 <div className={styles.apiResult}>
                   {apiMessage ? apiMessage : ""}
@@ -134,7 +134,7 @@ export default function Home() {
           <div className={styles.tabContent}>
             <h2 className={styles.sectionTitle}>Contact</h2>
             <p className={styles.sectionText}>
-              Have questions or feedback? Reach out to us at <a href="mailto:info@analytics.com">info@analytics.com</a>.
+              Have questions or feedback? Reach out to us at <a href="mailto:info@braisanalytics.com">info@braisanalytics.com</a>.
             </p>
             <form className={styles.contactForm} onSubmit={(e) => { e.preventDefault(); alert('Thank you for your message!'); }}>
               <input className={styles.input} type="text" placeholder="Your Name" required />
@@ -154,7 +154,7 @@ export default function Home() {
       <header className={styles.header}>
         <div className={styles.logoArea}>
           <span className={styles.logo}>🪐</span>
-          <span className={styles.brand}>Analytics Platform</span>
+          <span className={styles.brand}>Brais Analytics</span>
         </div>
         <nav className={styles.navTabs} role="tablist">
           {TABS.map(tab => (
@@ -180,7 +180,7 @@ export default function Home() {
         {renderTabContent()}
       </main>
       <footer className={styles.footer}>
-        &copy; {new Date().getFullYear()} Analytics Platform &mdash; Powered by Next.js & FastAPI
+        &copy; {new Date().getFullYear()} Brais Analytics &mdash; Powered by Next.js & FastAPI
       </footer>
     </div>
   );

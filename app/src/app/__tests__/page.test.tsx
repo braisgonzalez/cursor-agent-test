@@ -22,7 +22,7 @@ afterAll(() => {
 describe('Professional UI with Tabs', () => {
   it('renders the header and all tabs', () => {
     render(<Home />);
-    expect(screen.getByText('Analytics Platform')).toBeInTheDocument();
+    expect(screen.getByText('Brais Analytics')).toBeInTheDocument();
     expect(screen.getByTestId('tab-home')).toBeInTheDocument();
     expect(screen.getByTestId('tab-about')).toBeInTheDocument();
     expect(screen.getByTestId('tab-data')).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('Professional UI with Tabs', () => {
 
   it('shows Home tab content by default', () => {
     render(<Home />);
-    expect(screen.getByText('Welcome to Analytics Platform')).toBeInTheDocument();
+    expect(screen.getByText('Welcome to Brais Analytics')).toBeInTheDocument();
     expect(screen.getByText(/Python API Demo/)).toBeInTheDocument();
     expect(screen.getByText(/Counter Example/)).toBeInTheDocument();
   });
@@ -70,7 +70,7 @@ describe('Professional UI with Tabs', () => {
     expect(within(tabPanel).getByPlaceholderText('Your Name')).toBeInTheDocument();
     expect(within(tabPanel).getByPlaceholderText('Your Email')).toBeInTheDocument();
     expect(within(tabPanel).getByPlaceholderText('Your Message')).toBeInTheDocument();
-    expect(within(tabPanel).getByText('info@analytics.com')).toBeInTheDocument();
+    expect(within(tabPanel).getByText('info@braisanalytics.com')).toBeInTheDocument();
   });
 
   it('renders the counter and increments/decrements', () => {
@@ -86,7 +86,7 @@ describe('Professional UI with Tabs', () => {
 
   it('calls the API and displays the result', async () => {
     render(<Home />);
-    const apiBtn = screen.getByRole('button', { name: /call api endpoint/i });
+    const apiBtn = screen.getByRole('button', { name: /call hello\.py api/i });
     fireEvent.click(apiBtn);
     await waitFor(() => {
       expect(screen.getByText('Hello from Python!')).toBeInTheDocument();
