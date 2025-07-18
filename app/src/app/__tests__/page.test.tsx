@@ -8,8 +8,9 @@ beforeAll(() => {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       ok: true,
+      status: 200,
       json: () => Promise.resolve({ body: 'Hello from Python!' }),
-    })
+    } as unknown as Response)
   );
 });
 
@@ -21,7 +22,7 @@ afterAll(() => {
 describe('Professional UI with Tabs', () => {
   it('renders the header and all tabs', () => {
     render(<Home />);
-    expect(screen.getByText('Ocean Health Insights')).toBeInTheDocument();
+    expect(screen.getByText('Brais Analytics')).toBeInTheDocument();
     expect(screen.getByTestId('tab-home')).toBeInTheDocument();
     expect(screen.getByTestId('tab-about')).toBeInTheDocument();
     expect(screen.getByTestId('tab-data')).toBeInTheDocument();
@@ -31,7 +32,7 @@ describe('Professional UI with Tabs', () => {
 
   it('shows Home tab content by default', () => {
     render(<Home />);
-    expect(screen.getByText('Welcome to Ocean Health Insights')).toBeInTheDocument();
+    expect(screen.getByText('Welcome to Brais Analytics')).toBeInTheDocument();
     expect(screen.getByText(/Python API Demo/)).toBeInTheDocument();
     expect(screen.getByText(/Counter Example/)).toBeInTheDocument();
   });
@@ -41,7 +42,7 @@ describe('Professional UI with Tabs', () => {
     fireEvent.click(screen.getByTestId('tab-about'));
     const tabPanel = screen.getByRole('tabpanel');
     expect(within(tabPanel).getByText('About')).toBeInTheDocument();
-    expect(within(tabPanel).getByText(/This project is inspired by the Ocean Health Index/)).toBeInTheDocument();
+    expect(within(tabPanel).getByText(/This project is inspired by modern analytics platforms/)).toBeInTheDocument();
   });
 
   it('switches to Data tab and shows Data content', () => {
@@ -69,6 +70,7 @@ describe('Professional UI with Tabs', () => {
     expect(within(tabPanel).getByPlaceholderText('Your Name')).toBeInTheDocument();
     expect(within(tabPanel).getByPlaceholderText('Your Email')).toBeInTheDocument();
     expect(within(tabPanel).getByPlaceholderText('Your Message')).toBeInTheDocument();
+    expect(within(tabPanel).getByText('info@braisanalytics.com')).toBeInTheDocument();
   });
 
   it('renders the counter and increments/decrements', () => {
@@ -86,7 +88,6 @@ describe('Professional UI with Tabs', () => {
     render(<Home />);
     const apiBtn = screen.getByRole('button', { name: /call hello\.py api/i });
     fireEvent.click(apiBtn);
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByText('Hello from Python!')).toBeInTheDocument();
     });

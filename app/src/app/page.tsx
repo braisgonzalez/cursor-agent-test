@@ -59,9 +59,9 @@ export default function Home() {
         return (
           <div className={styles.tabContent}>
             <div className={styles.heroSection}>
-              <h1 className={styles.heroTitle}>Welcome to Ocean Health Insights</h1>
+              <h1 className={styles.heroTitle}>Welcome to Brais Analytics</h1>
               <p className={styles.heroSubtitle}>
-                A modern, fullstack demo inspired by <a href="https://www.oceanhealthindex.org/" target="_blank" rel="noopener noreferrer">Ocean Health Index</a>.<br />
+                A modern, fullstack demo inspired by <a href="https://www.canva.com/website-builder/" target="_blank" rel="noopener noreferrer">professional SaaS design</a>.<br />
                 Explore data, insights, and more with a beautiful, interactive UI.
               </p>
             </div>
@@ -103,8 +103,8 @@ export default function Home() {
           <div className={styles.tabContent}>
             <h2 className={styles.sectionTitle}>About</h2>
             <p className={styles.sectionText}>
-              This project is inspired by the Ocean Health Index and demonstrates a professional, fullstack web application using Next.js and FastAPI.<br />
-              Designed for modern data-driven organizations and elegant user experience.
+              This project is inspired by modern analytics platforms and demonstrates a professional, fullstack web application using Next.js and FastAPI.<br />
+              Designed for data-driven organizations and elegant user experience.
             </p>
           </div>
         );
@@ -134,7 +134,7 @@ export default function Home() {
           <div className={styles.tabContent}>
             <h2 className={styles.sectionTitle}>Contact</h2>
             <p className={styles.sectionText}>
-              Have questions or feedback? Reach out to us at <a href="mailto:info@oceanhealthdemo.org">info@oceanhealthdemo.org</a>.
+              Have questions or feedback? Reach out to us at <a href="mailto:info@braisanalytics.com">info@braisanalytics.com</a>.
             </p>
             <form className={styles.contactForm} onSubmit={e => { e.preventDefault(); alert('Thank you for your message!'); }}>
               <input className={styles.input} type="text" placeholder="Your Name" required />
@@ -153,8 +153,8 @@ export default function Home() {
     <div className={styles.page} data-testid="page-container" style={{ background: bgColor, transition: "background 0.3s" }}>
       <header className={styles.header}>
         <div className={styles.logoArea}>
-          <span className={styles.logo}>🌊</span>
-          <span className={styles.brand}>Ocean Health Insights</span>
+          <span className={styles.logo}>🪐</span>
+          <span className={styles.brand}>Brais Analytics</span>
         </div>
         <nav className={styles.navTabs} role="tablist">
           {TABS.map(tab => (
@@ -180,7 +180,7 @@ export default function Home() {
         {renderTabContent()}
       </main>
       <footer className={styles.footer}>
-        &copy; {new Date().getFullYear()} Ocean Health Insights &mdash; Powered by Next.js & FastAPI
+        &copy; {new Date().getFullYear()} Brais Analytics &mdash; Powered by Next.js & FastAPI
       </footer>
     </div>
   );
