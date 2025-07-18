@@ -1,5 +1,7 @@
-def handler(request):
-    return {
-        "statusCode": 200,
-        "body": "Hello from Python!"
-    } 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/hello")
+def hello():
+    return {"body": "Hello from Python!"} 
