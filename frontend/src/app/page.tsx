@@ -8,22 +8,24 @@ export default function Home() {
   const [bgColor, setBgColor] = useState("#fff");
   const [loading, setLoading] = useState(false);
 
-  const fetchApi = async () => {
+  // Fetch message from Python backend
+  const fetchApiMessage = async () => {
     setLoading(true);
     setApiMessage(null);
     try {
       const res = await fetch("/api/hello");
-      if (!res.ok) throw new Error("Error en la API");
+      if (!res.ok) throw new Error("API error");
       const data = await res.json();
       setApiMessage(data.body || JSON.stringify(data));
     } catch (e) {
-      setApiMessage("Error llamando a la API");
+      setApiMessage("Error calling the API");
     } finally {
       setLoading(false);
     }
   };
 
-  const randomColor = () => {
+  // Generate a random background color
+  const getRandomColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
     for (let i = 0; i < 6; i++) {
@@ -35,25 +37,25 @@ export default function Home() {
   return (
     <div className={styles.page} style={{ background: bgColor, transition: "background 0.3s" }}>
       <main className={styles.main}>
-        <h1>Demo visual Next.js + Python API</h1>
+        <h1>Visual Demo: Next.js + Python API</h1>
         <section style={{ margin: "2rem 0" }}>
-          <h2>Contador</h2>
+          <h2>Counter</h2>
           <button onClick={() => setCount(count - 1)}>-</button>
           <span style={{ margin: "0 1rem" }}>{count}</span>
           <button onClick={() => setCount(count + 1)}>+</button>
         </section>
         <section style={{ margin: "2rem 0" }}>
-          <h2>Comunicación con backend Python</h2>
-          <button onClick={fetchApi} disabled={loading}>
-            {loading ? "Cargando..." : "Llamar a API hello.py"}
+          <h2>Python Backend Communication</h2>
+          <button onClick={fetchApiMessage} disabled={loading}>
+            {loading ? "Loading..." : "Call hello.py API"}
           </button>
           {apiMessage && (
             <div style={{ marginTop: "1rem", fontWeight: "bold" }}>{apiMessage}</div>
           )}
         </section>
         <section style={{ margin: "2rem 0" }}>
-          <h2>Cambiar color de fondo</h2>
-          <button onClick={() => setBgColor(randomColor())}>Color aleatorio</button>
+          <h2>Change Background Color</h2>
+          <button onClick={() => setBgColor(getRandomColor())}>Random Color</button>
         </section>
       </main>
       <footer className={styles.footer}>
