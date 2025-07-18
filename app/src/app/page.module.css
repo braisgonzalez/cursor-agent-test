@@ -119,11 +119,15 @@
 }
 
 .cardRow {
-  display: block;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
   margin: 0 auto 2rem auto;
   padding: 0 1rem;
   max-width: 900px;
+  width: 100%;
 }
 
 .card {
@@ -131,12 +135,13 @@
   border-radius: 1.25rem;
   box-shadow: 0 4px 32px 0 rgba(34, 34, 59, 0.08);
   padding: 2.5rem 2rem;
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 350px;
-  margin: 0 1rem 2rem 1rem;
-  text-align: center;
   min-height: 300px;
+  flex-shrink: 0;
 }
 
 .cardTitle {
@@ -144,6 +149,7 @@
   font-weight: 700;
   color: #22223b;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .cardDesc {
@@ -151,6 +157,7 @@
   font-size: 1rem;
   text-align: center;
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
 .button {
@@ -325,13 +332,14 @@
 /* Enhanced responsive design for iOS devices */
 @media (max-width: 900px) {
   .cardRow {
+    flex-direction: column;
+    align-items: center;
     max-width: 500px;
     padding: 0 1rem;
   }
   .card {
-    display: block;
-    width: calc(100% - 2rem);
-    margin: 0 auto 2rem auto;
+    width: 100%;
+    max-width: 450px;
   }
   .tabContent {
     padding: 1rem 0.5rem 0.5rem 0.5rem;
@@ -344,16 +352,17 @@
     padding: 1rem 0 0 0;
   }
   .cardRow {
+    flex-direction: column;
+    align-items: center;
     max-width: calc(100% - 2rem);
     padding: 0 1rem;
     margin: 0 auto;
   }
   .card {
-    display: block;
     padding: 1.5rem 1rem;
-    margin: 0 auto 1.5rem auto;
     min-height: 260px;
     width: calc(100% - 2rem);
+    max-width: calc(100% - 2rem);
   }
   .heroTitle {
     font-size: 1.7rem;
