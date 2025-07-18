@@ -3,6 +3,24 @@
 # Exit on error
 set -e
 
+# Show directory structure for debugging
+cd app
+ls -l
+ls -l src/app
+ls -l src/app/__tests__
+cd ..
+ls -l app/api
+
+# Check for required files
+if [ ! -f app/src/app/page.tsx ]; then
+  echo "ERROR: app/src/app/page.tsx is missing!"
+  exit 1
+fi
+if [ ! -f app/src/app/layout.tsx ]; then
+  echo "ERROR: app/src/app/layout.tsx is missing!"
+  exit 1
+fi
+
 # Run backend tests
 cd app/api
 echo "\n=== Running backend tests (pytest) ==="
@@ -17,26 +35,22 @@ npm test
 # Build Next.js before starting dev server
 npm run build
 
-# Start backend server in background, redirect output to backend.log
+# Start backend server in foreground
 cd api
 echo "\n=== Starting backend server (FastAPI, port 8000) ==="
-uvicorn hello:app --reload --port 8000 > ../../backend.log 2>&1 &
+echo "(Press Ctrl+C to stop)"
+uvicorn hello:app --reload --port 8000 &
 BACK_PID=$!
 cd ..
 
-# Start frontend server in background, redirect output to frontend.log
+# Start frontend server in foreground
+
 echo "\n=== Starting frontend server (Next.js, port 3000) ==="
-npm run dev > ../frontend.log 2>&1 &
+echo "(Press Ctrl+C to stop)"
+npm run dev &
 FRONT_PID=$!
 
-sleep 2
-
-# Show server logs tail
-echo -e "\n=== Backend server log (last 10 lines) ==="
-tail -n 10 ../backend.log
-
-echo -e "\n=== Frontend server log (last 10 lines) ==="
-tail -n 10 ../frontend.log
+sleep 5
 
 # Always open Google Chrome to http://localhost:3000 on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -47,8 +61,8 @@ fi
 
 # Wait for user to press enter to stop servers
 echo "\nServers are running:"
-echo "- Backend: http://localhost:8000 (log: backend.log)"
-echo "- Frontend: http://localhost:3000 (log: frontend.log)"
+echo "- Backend: http://localhost:8000"
+echo "- Frontend: http://localhost:3000"
 echo "\nPress [ENTER] to stop both servers."
 read
 
