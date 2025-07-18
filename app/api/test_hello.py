@@ -1,11 +1,10 @@
 import pytest
-from hello import handler
+from fastapi.testclient import TestClient
+from hello import app
 
-class DummyRequest:
-    pass
-
-def test_handler_returns_hello():
-    response = handler(DummyRequest())
-    assert isinstance(response, dict)
-    assert response["statusCode"] == 200
-    assert response["body"] == "Hello from Python!" 
+def test_hello_endpoint():
+    client = TestClient(app)
+    response = client.get("/api/hello")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["body"] == "Hello from Python!" 
