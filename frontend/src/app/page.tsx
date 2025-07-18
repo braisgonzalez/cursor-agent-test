@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -45,72 +44,43 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.page} style={{ background: bgColor, transition: "background 0.3s" }}>
+    <div className={styles.page} data-testid="page-container" style={{ background: bgColor, transition: "background 0.3s" }}>
+      <header className={styles.header}>
+        <span style={{ color: "#6366f1" }}>Cursor Agents</span> Fullstack Demo
+      </header>
       <main className={styles.main}>
-        <h1>Visual Demo: Next.js + Python API</h1>
-        <section style={{ margin: "2rem 0" }}>
-          <h2>Counter</h2>
-          <button onClick={() => setCount(count - 1)}>-</button>
-          <span style={{ margin: "0 1rem" }}>{count}</span>
-          <button onClick={() => setCount(count + 1)}>+</button>
-        </section>
-        <section style={{ margin: "2rem 0" }}>
-          <h2>Python Backend Communication</h2>
-          <button onClick={fetchApiMessage} disabled={loading}>
+        <div className={styles.card}>
+          <div className={styles.cardTitle}>Python API Demo</div>
+          <div className={styles.cardDesc}>
+            This demo shows a modern React (Next.js) frontend calling a Python FastAPI backend.<br />
+            Click the button to call the <b>hello</b> endpoint!
+          </div>
+          <button className={styles.button} onClick={fetchApiMessage} disabled={loading}>
             {loading ? "Loading..." : "Call hello.py API"}
           </button>
-          {apiMessage && (
-            <div style={{ marginTop: "1rem", fontWeight: "bold" }}>{apiMessage}</div>
-          )}
-        </section>
-        <section style={{ margin: "2rem 0" }}>
-          <h2>Change Background Color</h2>
-          <button onClick={() => setBgColor(getRandomColor())}>Random Color</button>
+          <div className={styles.apiResult}>
+            {apiMessage ? apiMessage : ""}
+          </div>
+        </div>
+        <div className={styles.card}>
+          <div className={styles.cardTitle}>Counter Example</div>
+          <div className={styles.cardDesc}>
+            A simple interactive counter using React state.
+          </div>
+          <div className={styles.counter}>
+            <button className={styles.counterBtn} onClick={() => setCount(count - 1)}>-</button>
+            <span className={styles.counterValue}>{count}</span>
+            <button className={styles.counterBtn} onClick={() => setCount(count + 1)}>+</button>
+          </div>
+        </div>
+        <section className={styles.bgSection}>
+          <button className={styles.bgButton} onClick={() => setBgColor(getRandomColor())}>
+            Change Background Color
+          </button>
         </section>
       </main>
       <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        &copy; {new Date().getFullYear()} Cursor Agents Demo &mdash; Powered by Next.js & FastAPI
       </footer>
     </div>
   );
