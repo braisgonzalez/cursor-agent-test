@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -8,12 +10,20 @@ export default function Home() {
   const [bgColor, setBgColor] = useState("#fff");
   const [loading, setLoading] = useState(false);
 
+  // Helper to get the correct API URL depending on environment
+  const getApiUrl = () => {
+    if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+      return "http://localhost:8000/hello";
+    }
+    return "/api/hello";
+  };
+
   // Fetch message from Python backend
   const fetchApiMessage = async () => {
     setLoading(true);
     setApiMessage(null);
     try {
-      const res = await fetch("/api/hello");
+      const res = await fetch(getApiUrl());
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
       setApiMessage(data.body || JSON.stringify(data));
