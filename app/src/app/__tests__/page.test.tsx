@@ -15,7 +15,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  // @ts-ignore
+  // @ts-expect-error - mockRestore may not exist on fetch mock
   global.fetch.mockRestore?.();
 });
 

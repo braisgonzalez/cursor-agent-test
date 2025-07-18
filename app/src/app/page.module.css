@@ -4,6 +4,11 @@
   flex-direction: column;
   background: linear-gradient(120deg, #e0f7fa 0%, #e2e8f0 100%);
   font-family: 'Inter', 'Geist', 'Segoe UI', Arial, sans-serif;
+  /* iOS safe area support */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .header {
@@ -17,6 +22,10 @@
   border-bottom: 2px solid #caf0f8;
   box-shadow: 0 2px 12px 0 rgba(0, 180, 216, 0.08);
   position: relative;
+  /* iOS specific improvements */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .logoArea {
   display: flex;
@@ -40,6 +49,10 @@
   justify-content: center;
   gap: 0.5rem;
   margin: 0.5rem 0 0.5rem 0;
+  /* iOS improvements - horizontal scrolling on smaller screens */
+  overflow-x: auto;
+  padding: 0 1rem;
+  -webkit-overflow-scrolling: touch;
 }
 .tabButton {
   background: none;
@@ -53,6 +66,12 @@
   transition: background 0.2s, color 0.2s;
   outline: none;
   border-bottom: 3px solid transparent;
+  /* iOS touch improvements */
+  min-height: 44px; /* iOS minimum touch target */
+  min-width: 44px;
+  -webkit-tap-highlight-color: rgba(0, 180, 216, 0.2);
+  touch-action: manipulation;
+  white-space: nowrap; /* Prevent text wrapping on tabs */
 }
 .tabButton:hover {
   background: #caf0f8;
@@ -74,6 +93,8 @@
   justify-content: flex-start;
   gap: 2rem;
   padding-top: 2rem;
+  /* iOS scroll behavior */
+  -webkit-overflow-scrolling: touch;
 }
 
 .heroSection {
@@ -98,11 +119,11 @@
 }
 
 .cardRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  margin-bottom: 2rem;
+  display: block;
+  text-align: center;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+  max-width: 900px;
 }
 
 .card {
@@ -110,27 +131,26 @@
   border-radius: 1.25rem;
   box-shadow: 0 4px 32px 0 rgba(34, 34, 59, 0.08);
   padding: 2.5rem 2rem;
-  max-width: 400px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  display: inline-block;
+  vertical-align: top;
+  width: 350px;
+  margin: 0 1rem 2rem 1rem;
+  text-align: center;
+  min-height: 300px;
 }
 
 .cardTitle {
   font-size: 1.5rem;
   font-weight: 700;
   color: #22223b;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .cardDesc {
   color: #4a5568;
   font-size: 1rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .button {
@@ -144,6 +164,11 @@
   cursor: pointer;
   box-shadow: 0 2px 8px 0 rgba(0, 180, 216, 0.08);
   transition: background 0.2s, transform 0.1s;
+  /* iOS touch improvements */
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-tap-highlight-color: rgba(0, 180, 216, 0.2);
+  touch-action: manipulation;
 }
 .button:active {
   transform: scale(0.98);
@@ -154,21 +179,28 @@
 
 .apiResult {
   margin-top: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #00b4d8;
   background: #e0f7fa;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  min-height: 2.2rem;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  min-height: 3rem;
   text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 3px rgba(0, 180, 216, 0.1);
 }
 
 .counter {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
   margin-top: 1rem;
+  width: 100%;
 }
 .counterBtn {
   background: #caf0f8;
@@ -181,6 +213,11 @@
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
+  /* iOS touch improvements */
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-tap-highlight-color: rgba(72, 202, 228, 0.2);
+  touch-action: manipulation;
 }
 .counterBtn:hover {
   background: #48cae4;
@@ -210,6 +247,11 @@
   cursor: pointer;
   box-shadow: 0 2px 8px 0 rgba(251, 191, 36, 0.08);
   transition: background 0.2s, transform 0.1s;
+  /* iOS touch improvements */
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-tap-highlight-color: rgba(251, 191, 36, 0.2);
+  touch-action: manipulation;
 }
 .bgButton:active {
   transform: scale(0.98);
@@ -262,6 +304,10 @@
   background: #f8fafc;
   color: #22223b;
   transition: border 0.2s;
+  /* iOS touch improvements */
+  min-height: 44px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .input:focus {
   border: 1.5px solid #00b4d8;
@@ -276,26 +322,247 @@
   background: none;
 }
 
+/* Enhanced responsive design for iOS devices */
 @media (max-width: 900px) {
   .cardRow {
-    flex-direction: column;
-    gap: 1.5rem;
+    max-width: 500px;
+    padding: 0 1rem;
+  }
+  .card {
+    display: block;
+    width: calc(100% - 2rem);
+    margin: 0 auto 2rem auto;
   }
   .tabContent {
     padding: 1rem 0.5rem 0.5rem 0.5rem;
   }
 }
+
+/* iPhone 13 and similar devices */
+@media (max-width: 430px) {
+  .main {
+    padding: 1rem 0 0 0;
+  }
+  .cardRow {
+    max-width: calc(100% - 2rem);
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+  .card {
+    display: block;
+    padding: 1.5rem 1rem;
+    margin: 0 auto 1.5rem auto;
+    min-height: 260px;
+    width: calc(100% - 2rem);
+  }
+  .heroTitle {
+    font-size: 1.7rem;
+    line-height: 1.2;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  .sectionTitle {
+    font-size: 1.4rem;
+  }
+  .navTabs {
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+  }
+  .tabButton {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+  }
+  .counter {
+    gap: 1.5rem;
+  }
+  .counterBtn {
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 1.2rem;
+  }
+  .button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* iPhone and small iOS devices */
 @media (max-width: 600px) {
   .main {
     padding: 1rem 0 0 0;
   }
+  .cardRow {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
   .card {
-    padding: 1.5rem 0.5rem;
+    display: block;
+    padding: 2rem 1.5rem;
+    margin: 0 auto 1.5rem auto;
+    min-height: 280px;
+    width: calc(100% - 2rem);
+  }
+  .heroTitle {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+  .heroSubtitle {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  .navTabs {
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+  }
+  .tabButton {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+  .counter {
+    gap: 2rem;
+  }
+  .counterBtn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.3rem;
+  }
+  .button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* iPhone SE and very small screens */
+@media (max-width: 375px) {
+  .page {
+    padding-left: max(env(safe-area-inset-left), 0.5rem);
+    padding-right: max(env(safe-area-inset-right), 0.5rem);
   }
   .heroTitle {
     font-size: 1.5rem;
   }
-  .sectionTitle {
-    font-size: 1.3rem;
+  .brand {
+    font-size: 1.6rem;
+  }
+  .logo {
+    font-size: 1.8rem;
+  }
+  .cardRow {
+    padding: 0 0.75rem;
+    max-width: calc(100% - 1.5rem);
+  }
+  .card {
+    display: block;
+    margin: 0 auto 1rem auto;
+    padding: 1.25rem 0.75rem;
+    min-height: 240px;
+    width: calc(100% - 1.5rem);
+  }
+  .cardTitle {
+    font-size: 1.2rem;
+  }
+  .navTabs {
+    padding: 0 0.5rem;
+    gap: 0.125rem;
+  }
+  .tabButton {
+    padding: 0.5rem 0.6rem;
+    min-width: auto;
+    font-size: 0.85rem;
+  }
+  .counter {
+    gap: 1.25rem;
+  }
+  .counterBtn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape orientation on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header {
+    padding: 0 0 0.25rem 0;
+  }
+  .logoArea {
+    padding: 0.8rem 0 0.25rem 0;
+  }
+  .heroTitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .main {
+    padding-top: 1rem;
+    gap: 1rem;
+  }
+  .card {
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* iOS specific touch and gesture improvements */
+@supports (-webkit-touch-callout: none) {
+  .page {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  .tabButton, .button, .counterBtn, .bgButton {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .input {
+    -webkit-touch-callout: none;
+  }
+}
+
+/* Dark mode support for iOS */
+@media (prefers-color-scheme: dark) {
+  .page {
+    background: linear-gradient(120deg, #1a365d 0%, #2d3748 100%);
+  }
+  
+  .card {
+    background: #2d3748;
+    color: #e2e8f0;
+  }
+  
+  .cardTitle {
+    color: #e2e8f0;
+  }
+  
+  .cardDesc {
+    color: #a0aec0;
+  }
+  
+  .sectionText {
+    color: #e2e8f0;
+  }
+  
+  .input {
+    background: #4a5568;
+    color: #e2e8f0;
+    border-color: #718096;
+  }
+  
+  .apiResult {
+    background: #2c5aa0;
+    color: #90cdf4;
+  }
+  
+  .dataVizPlaceholder {
+    background: #2c5aa0;
+    color: #90cdf4;
   }
 }

@@ -35,7 +35,7 @@ export default function Home() {
       if (!res.ok) throw new Error("API error");
       const data = await res.json();
       setApiMessage(data.body || JSON.stringify(data));
-    } catch (e) {
+    } catch {
       setApiMessage("Error calling the API");
     } finally {
       setLoading(false);
@@ -136,7 +136,7 @@ export default function Home() {
             <p className={styles.sectionText}>
               Have questions or feedback? Reach out to us at <a href="mailto:info@braisanalytics.com">info@braisanalytics.com</a>.
             </p>
-            <form className={styles.contactForm} onSubmit={e => { e.preventDefault(); alert('Thank you for your message!'); }}>
+            <form className={styles.contactForm} onSubmit={(e) => { e.preventDefault(); alert('Thank you for your message!'); }}>
               <input className={styles.input} type="text" placeholder="Your Name" required />
               <input className={styles.input} type="email" placeholder="Your Email" required />
               <textarea className={styles.input} placeholder="Your Message" required />
