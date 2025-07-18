@@ -1,4 +1,4 @@
-name: CI
+name: Fullstack Tests
 
 on:
   push:
