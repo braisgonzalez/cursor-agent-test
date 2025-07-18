@@ -35,13 +35,9 @@ tail -n 10 ../backend.log
 echo -e "\n=== Frontend server log (last 10 lines) ==="
 tail -n 10 ../frontend.log
 
-# Open Google Chrome to http://localhost:3000
-if command -v google-chrome > /dev/null; then
-  google-chrome http://localhost:3000 &
-elif command -v chromium-browser > /dev/null; then
-  chromium-browser http://localhost:3000 &
-elif command -v open > /dev/null; then
-  open -a "Google Chrome" http://localhost:3000 &
+# Always open Google Chrome to http://localhost:3000 on macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  open -na "Google Chrome" --args --new-tab "http://localhost:3000" &
 else
   echo "Please open http://localhost:3000 in your browser."
 fi
