@@ -299,6 +299,128 @@
     font-size: 1.3rem;
   }
 }
+/* Minesweeper Game Styles */
+.topButtonSection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.minesweeperButton {
+  background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px 0 rgba(139, 92, 246, 0.3);
+  transition: background 0.2s, transform 0.1s;
+}
+
+.minesweeperButton:hover {
+  background: linear-gradient(90deg, #7c3aed 0%, #8b5cf6 100%);
+  transform: translateY(-2px);
+}
+
+.minesweeperButton:active {
+  transform: scale(0.98);
+}
+
+.minesweeperGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.mineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mineStats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  color: #22223b;
+}
+
+.mineBoard {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 2px;
+  background: #94a3b8;
+  border: 3px solid #94a3b8;
+  border-radius: 0.5rem;
+}
+
+.mineRow {
+  display: contents;
+}
+
+.mineCell {
+  width: 32px;
+  height: 32px;
+  background: #e2e8f0;
+  border: 2px outset #cbd5e1;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s;
+  color: #1e293b;
+}
+
+.mineCell:hover {
+  background: #f1f5f9;
+}
+
+.mineCell.revealed {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  cursor: default;
+}
+
+.mineCell.mine {
+  background: #ef4444;
+  color: #fff;
+}
+
+.winMessage {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #059669;
+  text-align: center;
+  padding: 1rem;
+  background: #d1fae5;
+  border-radius: 0.75rem;
+  border: 2px solid #10b981;
+}
+
+.loseMessage {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #dc2626;
+  text-align: center;
+  padding: 1rem;
+  background: #fee2e2;
+  border-radius: 0.75rem;
+  border: 2px solid #ef4444;
+}
+
 @media (max-width: 430px) {
   .header {
     font-size: 1.3rem;
@@ -392,5 +514,28 @@
     width: 100%;
     box-sizing: border-box;
     min-width: 0;
+  }
+  .minesweeperGame {
+    padding: 0.5rem;
+  }
+  .mineHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .mineCell {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  .mineBoard {
+    gap: 1px;
+  }
+  .topButtonSection {
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+  }
+  .minesweeperButton {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
   }
 }
